@@ -1,5 +1,10 @@
+Node.js is used to connect the database with the server.
+
 To start server
 ```
 node server
 ```
-Go to localhost:3000
+In the webbrowser go to
+```
+localhost:3000
+```
