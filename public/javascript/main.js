@@ -11,18 +11,37 @@
 
 // Handle database
 function showMovies(movies) {
-    var moviesList = document.getElementById('moviesList');
-    for (var i = 0; i < movies.length; i++) {
-        var movie = document.createElement('movie');
-        movie.className += 'movieList';
-        var heading = document.createElement('h3');
-        heading.innerHTML = movies[i].title;
-        var summary = document.createElement('p');
-        summary.innerHTML = movies[i].summary;
-        movie.appendChild(heading);
-        movie.appendChild(summary);
-        moviesList.appendChild(movie)
+    // Get HTML element
+    var moviesSection = document.getElementById('moviesSection');
+
+    // Create table
+    var table = $('<table>').addClass('moviesTable');
+
+    // Column Titles
+    var columnTitles = ["Title", "Genre", "Summary", "Lenght", "Price", "Rating", "Actor", "Director", "Mood"]
+
+    var row = $('<tr>').addClass('rowHead');
+    for (var i = 0; i < columnTitles.length; i++) {
+        var column = $('<th>').addClass('columnHead').text(columnTitles[i]);
+        row.append(column);
     }
+    table.append(row);
+
+    // Row
+    var movieAttributes = ["title", "genre", "summary", "length", "price", "imdbRating", "actor", "director", "mood"]
+    for (var i = 0; i < Object.keys(movies).length; i++) {
+        // Column
+        var movieRow = movies[i]
+        var row = $('<tr>').addClass('row');
+        for (var j = 0; j < movieAttributes.length; j++) {
+            var newIndex = 2+j;
+            var column = $('<td>').addClass('column').text(movieRow[movieAttributes[j]]);
+            console.log(movieRow[movieAttributes[j]])
+            row.append(column);
+        }
+        table.append(row);
+    }
+    $('#moviesSection').append(table);
 }
 
 function getMovies() {
@@ -32,9 +51,9 @@ function getMovies() {
             console.log("No data received")
         } else {
             console.log("Data received");
-            for (var i = 0; i < data.length; i++) {
-                console.log(data[i].title);
-            }
+            // for (var i = 0; i < data.length; i++) {
+            //     console.log(data[i].title);
+            // }
         }
         showMovies(data)
     });
