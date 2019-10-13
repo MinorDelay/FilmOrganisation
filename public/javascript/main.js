@@ -1,13 +1,13 @@
-var selectedMood;
-var selectedRating;
+// var selectedMood;
+// var selectedRating;
 
-function setMood(selection) {
-    selectedMood = selection.value;
-}
+// function setMood(selection) {
+//     selectedMood = selection.value;
+// }
 
-function setRating(selection) {
-    selectedRating = selection.value;
-}
+// function setRating(selection) {
+//     selectedRating = selection.value;
+// }
 
 // Handle database
 function showMovies(movies) {
@@ -26,12 +26,13 @@ function showMovies(movies) {
 }
 
 function getMovies() {
-    $.get('/allmovies', function (data) {
+
+    $.get('../allmovies', function (data) {
         if (!data) {
             console.log("No data received")
         } else {
             console.log("Data received");
-            for (var i = 0; i < data.length; 1++) {
+            for (var i = 0; i < data.length; i++) {
                 console.log(data[i].title);
             }
         }
@@ -39,4 +40,4 @@ function getMovies() {
     });
 }
 
-getMovies();
+window.onload = getMovies;
