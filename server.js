@@ -23,6 +23,19 @@ app.get('/allmovies', function(request, response){
     })
 });
 
+app.get('/searchresult', function(request, response){
+    console.log(req.body)
+
+    console.log("GET request received at /searchresult");
+    var sqlQuery = "SELECT * FROM movies WHERE 1=1 AND imdbRating > 7"
+    db.each(sqlQuery, [], (err, rows) => {
+        if (err) {
+            throw err;
+        }
+        response.send(rows);
+    });
+});
+
 app.listen(3000, function(){
     console.log("Server is running on port 3000");
 });
