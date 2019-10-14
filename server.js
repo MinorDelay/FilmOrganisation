@@ -36,6 +36,9 @@ app.post('/search', function (request, response) {
 
 // Find movies based on filter
 app.get('/searchResult', function (request, response) {
+    console.log("GET request received at /searchResult");
+
+    // Create query dynamically
     var sqlQuery = "SELECT * FROM movies WHERE 1=1"
 
     if (userFilter.title != '') sqlQuery += " AND title LIKE '%" + userFilter.title + "%'";
@@ -57,16 +60,12 @@ app.get('/searchResult', function (request, response) {
     else if (userFilter.length == "90 - 120 minutes") sqlQuery += " AND price >= 90 AND price <= 120";
     else if (userFilter.length == "> 120 minutes") sqlQuery += " AND price >= 120";
 
-    console.log("GET request received at /searchResult");
-    console.log(userFilter)
-    console.log(sqlQuery)
-
+    // Return query result
     db.all(sqlQuery.toString(), function (err, rows) {
         if (err) {
             console.log("Error: " + err)
         } else {
-            response.send(rows); // modify to rows
-            // console.log(rows)
+            response.send(rows);
         }
     })
 });
