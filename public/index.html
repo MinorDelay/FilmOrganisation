@@ -9,11 +9,17 @@
   <link href="css/main.css" rel="stylesheet" />
 
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!-- jQuery -->
-  <script src="javascript/main.js"></script>
-  <script src="javascript/movies.js"></script>
+  <!-- <script src="javascript/main.js"></script> -->
+  <!-- <script src="javascript/movies.js"></script> -->
+  <script src="javascript/search.js"></script>
 </head>
 
 <body>
+  <ul>
+    <li><a href="index.html" class="active" href="#home">Home</a></li>
+    <li><a href="allmovies.html">About</a></li>
+  </ul>
+
   <div class="s010">
     <form>
       <div class="inner-form">
@@ -34,8 +40,31 @@
           <div class="row">
             <div class="input-field">
               <div class="input-select">
+                <select data-trigger="" name="choices-single-defaul">
+                  <option placeholder="" value="IMDB-rating">Min. Rating (IMDB.com)</option>
+                  <option>< 5</option>
+                  <option>5 < 7.5</option>
+                  <option>> 7.5</option>
+                </select>
+              </div>
+            </div>
+            <div class="input-field">
+              <div class="input-select">
+                <select data-trigger="" name="choices-single-defaul">
+                  <option placeholder="" value="Pricing">Pricing (Bol.com)</option>
+                  <option>Cheap watch (< 5)</option>
+                  <option>Budget (5 - 10)</option>
+                  <option>Medium (10.01 - 15)</option>
+                  <option>Expensive taste (> 15)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row second">
+            <div class="input-field">
+              <div class="input-select">
                 <select onchange="setMood(this)" data-trigger="" name="choices-single-defaul">
-                  <option placeholder="" value="">Mood</option>
+                  <option placeholder="" value="Mood">Mood</option>
                   <option>Happy</option>
                   <option>Excited</option>
                   <option>Fear</option>
@@ -46,58 +75,36 @@
             <div class="input-field">
               <div class="input-select">
                 <select data-trigger="" name="choices-single-defaul">
-                  <option placeholder="" value="">Min. Rating</option>
-                  <option>10</option>
-                  <option>9</option>
-                  <option>8</option>
-                  <option>7</option>
-                  <option>6</option>
-                  <option>5</option>
-                  <option>4</option>
-                  <option>3</option>
-                  <option>2</option>
-                  <option>1</option>
+                  <option placeholder="" value="Genre">Genre</option>
+                  <option>Action</option>
+                  <option>Adventure</option>
+                  <option>Animation</option>
+                  <option>Biograpy</option>
+                  <option>Comedy</option>
+                  <option>Crime</option>
+                  <option>Documentary</option>
+                  <option>Drama</option>
+                  <option>Family</option>
+                  <option>Fantasy</option>
+                  <option>History</option>
+                  <option>Horror</option>
+                  <option>Music</option>
+                  <option>Musical</option>
+                  <option>Mystery</option>
+                  <option>Romance</option>
+                  <option>Sci-Fi</option>
+                  <option>Sport</option>
+                  <option>Thriller</option>
                 </select>
               </div>
             </div>
             <div class="input-field">
               <div class="input-select">
                 <select data-trigger="" name="choices-single-defaul">
-                  <option placeholder="" value="">Size</option>
-                  <option>Subject b</option>
-                  <option>Subject c</option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <div class="row second">
-            <div class="input-field">
-              <div class="input-select">
-                <select data-trigger="" name="choices-single-defaul">
-                  <option placeholder="" value="">Sale</option>
-                  <option>Subject b</option>
-                  <option>Subject c</option>
-                </select>
-              </div>
-            </div>
-            <div class="input-field">
-              <div class="input-select">
-                <select data-trigger="" name="choices-single-defaul">
-                  <option placeholder="" value="">Time</option>
-                  <option>Last time</option>
-                  <option>Today</option>
-                  <option>This week</option>
-                  <option>This month</option>
-                  <option>This year</option>
-                </select>
-              </div>
-            </div>
-            <div class="input-field">
-              <div class="input-select">
-                <select data-trigger="" name="choices-single-defaul">
-                  <option placeholder="" value="">Type</option>
-                  <option>Subject b</option>
-                  <option>Subject c</option>
+                  <option placeholder="" value="Duration">Duration</option>
+                  <option>< 30 minutes</option>
+                  <option>31 - 90 minutes</option>
+                  <option>> 91 minutes</option>
                 </select>
               </div>
             </div>
@@ -108,7 +115,7 @@
                 <span>108 </span>results</div>
               <div class="group-btn">
                 <button class="btn-delete" id="delete">RESET</button>
-                <button class="btn-search">SEARCH</button>
+                <button class="btn-search" id="searchBtn">SEARCH</button>
               </div>
             </div>
           </div>
@@ -116,7 +123,7 @@
       </div>
     </form>
   </div>
-  <script src="js/extention/choices.js"></script>
+  <!-- <script src="js/extention/choices.js"></script>
   <script>
     const customSelects = document.querySelectorAll("select");
     const deleteBtn = document.getElementById('delete')
@@ -145,7 +152,7 @@
         deleteAll[i].click();
       }
     });
-  </script>
+  </script> -->
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 
 </html>
