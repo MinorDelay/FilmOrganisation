@@ -13,7 +13,7 @@ function createTableHead(table, titles) {
 // Create table body
 function createTable(table, data, attributes) {
     var movie = data[0]
-    var nextMovie = {"title": "????????"}
+    var nextMovie = data[30]
     var mergedMovie = {};
 
     // Each entry in database
@@ -42,11 +42,10 @@ function createTable(table, data, attributes) {
         if (i + 1 < Object.keys(data).length) nextMovie = data[i + 1]
         else nextMovie = data[i]
 
-        console.log()
-
         // Merge genre, actors and directors into one string
         if (movie.title == nextMovie.title) {
             if (mergedMovie.genre.indexOf(nextMovie.genre) < 0) mergedMovie.genre += ", " + nextMovie.genre
+            console.log(mergedMovie.genre)
             if (mergedMovie.actor.indexOf(nextMovie.actor) < 0) mergedMovie.actor += ", " + nextMovie.actor
             if (mergedMovie.director.indexOf(nextMovie.director) < 0) mergedMovie.director += ", " + nextMovie.director
         }
@@ -62,10 +61,27 @@ function createTable(table, data, attributes) {
     }
 }
 
-function showMovies(movies, tableId) {
-    var table = document.getElementById(tableId);
+function showMovies(movies) {
+    var table = document.getElementById('moviesTable');
     var tableHeadTitles = ["Title", "Genre", "Summary", "Length", "Price", "Rating", "Actor", "Director", "Mood"]
     var movieAttributes = ["title", "genre", "summary", "length", "price", "imdbRating", "actor", "director", "mood"]
     createTable(table, movies, movieAttributes);
     createTableHead(table, tableHeadTitles);
 }
+
+function getMovies() {
+
+    $.get('../allmovies', function (data) {
+        if (!data) {
+            console.log("No data received")
+        } else {
+            console.log("Data received");
+            // for (var i = 0; i < data.length; i++) {
+            //     console.log(data[i].title);
+            // }
+        }
+        showMovies(data)
+    });
+}
+
+window.onload = getMovies;
