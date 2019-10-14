@@ -24,7 +24,7 @@ function createTable(table, data, attributes) {
 
 function showMovies(movies) {
     var table = document.getElementById('moviesTable');
-    var tableHeadTitles = ["Title", "Genre", "Summary", "Lenght", "Price", "Rating", "Actor", "Director", "Mood"]
+    var tableHeadTitles = ["Title", "Genre", "Summary", "Length", "Price", "Rating", "Actor", "Director", "Mood"]
     var movieAttributes = ["title", "genre", "summary", "length", "price", "imdbRating", "actor", "director", "mood"]
     createTable(table, movies, movieAttributes);
     createTableHead(table, tableHeadTitles);
