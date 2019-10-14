@@ -52,9 +52,9 @@ app.get('/searchResult', function (request, response) {
     else if (userFilter.price == "Medium (10.01 - 15)") sqlQuery += " AND price > 10.00 AND price <= 15";
     else if (userFilter.price == "Expensive (> 15)") sqlQuery += " AND price >= 15 ";
 
-    if (userFilter.mood != '') sqlQuery += " AND mood = '" + userFilter.mood.toString() + "'";
+    if (userFilter.mood != '') sqlQuery += " AND mood = '" + userFilter.mood + "'";
 
-    if (userFilter.genre != '') sqlQuery += " AND genre = " + userFilter.genre.toString();
+    if (userFilter.genre != '') sqlQuery += " AND genre = '" + userFilter.genre + "'";
 
     if (userFilter.length == "< 90 minutes") sqlQuery += " AND length <= 90";
     else if (userFilter.length == "90 - 120 minutes") sqlQuery += " AND price >= 90 AND price <= 120";
