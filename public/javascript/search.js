@@ -1,7 +1,7 @@
-var sqlite3 = require('sqlite3');
-var db = new sqlite3.Database('data/movies.sqlite')
-
 // Create query
+
+console.log(window.location.search)
+
 var sqlQuery = "SELECT * FROM movies WHERE 1=1 AND imdbRating > 7"
 
 function setTitle() {
@@ -37,10 +37,26 @@ function setLength(selection) {
 }
 
 function findMovies() {
-    db.each(sqlQuery, [], (err, row) => {
-        if (err) {
-            throw err;
+
+    $.get('../allmovies', function (data) {
+        if (!data) {
+            console.log("No data received")
+        } else {
+            console.log("Data received");
+            // for (var i = 0; i < data.length; i++) {
+            //     console.log(data[i].title);
+            // }
+            showMovies(data)
         }
-        console.log(row.title);
     });
+
+
+    // db.each(sqlQuery, [], (err, row) => {
+    //     if (err) {
+    //         throw err;
+    //     }
+    //     console.log(row.title);
+    // });
 }
+
+//window.onload = findMovies;
