@@ -24,17 +24,27 @@ app.get('/allmovies', function (request, response) {
     })
 });
 
-app.post('/search', function (request, response) {
-    console.log(request.body)
+var userFilter;
 
+// Process filter chosen by user
+app.post('/search', function (request, response) {
     console.log("POST request received at /search");
-    // var sqlQuery = "SELECT * FROM movies WHERE 1=1 AND imdbRating > 7"
-    // db.each(sqlQuery, [], (err, rows) => {
-    //     if (err) {
-    //         throw err;
-    //     }
-    //     response.send(rows);
-    // });
+    console.log(request.body)
+    userFilter = request.body;
+    response.redirect('/searchresult.html');
+});
+
+// Find movies based on filter
+app.get('/searchResult', function (request, response) {
+    console.log("GET request received at /searchResult");
+    console.log(userFilter)
+    db.all('SELECT * FROM movies', function (err, rows) {
+        if (err) {
+            console.log("Error: " + err)
+        } else {
+            response.send(userFilter);
+        }
+    })
 });
 
 app.listen(3000, function () {

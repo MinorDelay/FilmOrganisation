@@ -37,16 +37,16 @@ function setLength(selection) {
 }
 
 function findMovies() {
-
-    $.get('../allmovies', function (data) {
+    $.get('../searchResult', function (data) {
         if (!data) {
             console.log("No data received")
         } else {
             console.log("Data received");
+            console.log(data)
             // for (var i = 0; i < data.length; i++) {
             //     console.log(data[i].title);
             // }
-            showMovies(data)
+           // showMovies(data)
         }
     });
 
@@ -59,4 +59,4 @@ function findMovies() {
     // });
 }
 
-//window.onload = findMovies;
+window.onload = findMovies;
