@@ -20,11 +20,11 @@
   </ul>
 
   <div class="s010">
-    <form id="searchParameters" action="/search" method="post">
+    <form>
       <div class="inner-form">
         <div class="basic-search">
           <div class="input-field">
-            <input id="search" type="text" placeholder="Type Keywords" name="title" />
+            <input id="search" type="text" placeholder="Type Keywords" />
             <div class="icon-wrap">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                 <path
@@ -39,20 +39,20 @@
           <div class="row">
             <div class="input-field">
               <div class="input-select">
-                <select data-trigger="" class="select" name="imdbRating">
-                  <option placeholder="" value="">Min. Rating (IMDB.com)</option>
-                  <option>
-                    < 5</option> <option>5 - 7.5
-                  </option>
+                <select data-trigger="" class="select" name="choices-single-defaul">
+                  <option placeholder="" value ="">Min. Rating (IMDB.com)</option>
+                  <option>< 5</option>
+                  <option>5 < 7.5</option>
                   <option>> 7.5</option>
                 </select>
               </div>
             </div>
             <div class="input-field">
               <div class="input-select">
-                <select data-trigger="" class="select" name="price">
+                <select data-trigger="" class="select" name="choices-single-defaul">
                   <option placeholder="" value="">Pricing (Bol.com)</option>
-                  <option>Cheap watch (< 5)</option> <option>Budget (5 - 10)</option>
+                  <option>Cheap watch (< 5)</option>
+                  <option>Budget (5 - 10)</option>
                   <option>Medium (10.01 - 15)</option>
                   <option>Expensive taste (> 15)</option>
                 </select>
@@ -62,18 +62,18 @@
           <div class="row second">
             <div class="input-field">
               <div class="input-select">
-                <select data-trigger="" class="select" name="mood">
+                <select onchange="setMood(this)" data-trigger="" class="select" name="choices-single-defaul">
                   <option placeholder="" value="">Mood</option>
-                  <option value="happy">Happy</option>
-                  <option value="exciting">Exciting</option>
-                  <option value="fear">Fear</option>
-                  <option value="sad">Sad</option>
+                  <option>Happy</option>
+                  <option>Excited</option>
+                  <option>Fear</option>
+                  <option>Sad</option>
                 </select>
               </div>
             </div>
             <div class="input-field">
               <div class="input-select">
-                <select data-trigger="" class="select" name="genre">
+                <select data-trigger="" class="select" name="choices-single-defaul">
                   <option placeholder="" value="">Genre</option>
                   <option>Action</option>
                   <option>Adventure</option>
@@ -99,11 +99,10 @@
             </div>
             <div class="input-field">
               <div class="input-select">
-                <select data-trigger="" class="select" name="length">
+                <select data-trigger="" class="select" name="choices-single-defaul">
                   <option placeholder="" value="">Duration</option>
-                  <option>
-                    < 30 minutes</option> <option>31 - 90 minutes
-                  </option>
+                  <option>< 30 minutes</option>
+                  <option>31 - 90 minutes</option>
                   <option>> 91 minutes</option>
                 </select>
               </div>
@@ -112,7 +111,7 @@
           <div class="row third">
             <div class="input-field">
               <div class="result-count">
-                <span>125</span>results</div>
+                <span>108 </span>results</div>
               <div class="group-btn">
                 <button class="btn-delete" id="delete">RESET</button>
                 <button class="btn-search" id="searchBtn">SEARCH</button>
