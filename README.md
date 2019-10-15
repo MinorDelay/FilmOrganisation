@@ -15,3 +15,4 @@ In the webbrowser go to
 ```
 localhost:3000
 ```
+For the home page front-end, a template is used. The rest is created by ourselves.
