@@ -29,7 +29,7 @@ function createTable(table, data, attributes) {
                 "Summary": data[i].Summary,
                 "Length": data[i].Length,
                 "Price": data[i].Price,
-                "ImdbRating": data[i].ImdbRating,
+                "Rating": data[i].Rating,
                 "Actor": [data[i].Actor],
                 "Director": [data[i].Director],
                 "Mood": data[i].Mood
@@ -41,9 +41,9 @@ function createTable(table, data, attributes) {
 
         // Next movie if there is a next movie in the list
         if (i + 1 < Object.keys(data).length) nextMovie = data[i + 1]
-        else nextMovie.Title = "????????"
-
-        console.log("TITLE: "+ nextMovie.Title)
+        else nextMovie = {
+            "Title": "????????"
+        }
 
         // Merge genre, actors and directors into one string
         if (movie.Title == nextMovie.Title) {
@@ -54,12 +54,13 @@ function createTable(table, data, attributes) {
 
         // Create row if the next movie is another movie
         if (movie.Title != nextMovie.Title) {
+            console.log("TEST 1")
             for (var j = 0; j < Object.keys(mergedMovie).length; j++) {
                 var cell = document.createElement('td');
                 var text = "";
 
                 // If it is one of these properties, then create url
-                if (["Genre", "Length", "Price", "ImdbRating", "Actor", "Director", "Mood"].indexOf(attributes[j]) > -1) {
+                if (["Genre", "Length", "Price", "Rating", "Actor", "Director", "Mood"].indexOf(attributes[j]) > -1) {
                     if (Array.isArray(mergedMovie[attributes[j]])) {
                         mergedMovie[attributes[j]].forEach(function (element) {
                             text = element
@@ -71,7 +72,7 @@ function createTable(table, data, attributes) {
                         text = text.link("/pageLink/" + attributes[j] + "=" + mergedMovie[attributes[j]])
                         cell.innerHTML = text
                     }
-                   // Don't create url for title and summary
+                    // Don't create url for title and summary
                 } else {
                     cell.innerHTML = mergedMovie[attributes[j]].toString();
                 }
@@ -83,8 +84,7 @@ function createTable(table, data, attributes) {
 
 function showMovies(movies, tableId) {
     var table = document.getElementById(tableId);
-    var tableHeadTitles = ["Title", "Genre", "Summary", "Length", "Price", "Rating", "Actor", "Director", "Mood"]
-    var movieAttributes = ["Title", "Genre", "Summary", "Length", "Price", "ImdbRating", "Actor", "Director", "Mood"]
+    var movieAttributes = ["Title", "Genre", "Summary", "Length", "Price", "Rating", "Actor", "Director", "Mood"]
     createTable(table, movies, movieAttributes);
-    createTableHead(table, tableHeadTitles);
+    createTableHead(table, movieAttributes);
 }
