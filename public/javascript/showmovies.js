@@ -40,7 +40,7 @@ function createTable(table, data, attributes) {
 
         // Next movie if there is a next movie in the list
         if (i + 1 < Object.keys(data).length) nextMovie = data[i + 1]
-        else nextMovie = data[i]
+        else nextMovie = {"title": "????????"}
 
         console.log()
 
