@@ -3,9 +3,13 @@ var app = express();
 var sqlite3 = require('sqlite3');
 var db = new sqlite3.Database('data/movies.sqlite')
 var bodyParser = require('body-parser');
+var createQuery = require('./createQuery.js');
 
 app.use(express.static(__dirname + '/public'))
-app.use(bodyParser.urlencoded({extended: true})); 
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+
 
 // routes
 app.get('/', function (request, response) {
@@ -38,29 +42,7 @@ app.post('/search', function (request, response) {
 // Find movies based on filter
 app.get('/searchResult', function (request, response) {
     console.log("GET request received at /searchResult");
-
-    // Create query dynamically
-    var sqlQuery = "SELECT * FROM movies WHERE 1=1"
-
-    if (userFilter.title != '') sqlQuery += " AND title LIKE '%" + userFilter.title + "%'";
-
-    if (userFilter.imdbRating == "< 5") sqlQuery += " AND imdbRating <= 5";
-    else if (userFilter.imdbRating == "5 - 7.5") sqlQuery += " AND imdbRating BETWEEN 5 AND 7";
-    else if (userFilter.imdbRating == "> 7.5") sqlQuery += " AND imdbRating >= 7.5";
-
-    if (userFilter.price == "Cheap watch (< 5)") sqlQuery += " AND price <= 5";
-    else if (userFilter.price == "Budget (5 - 10)") sqlQuery += " AND price BETWEEN 5 AND 10";
-    else if (userFilter.price == "Medium (10 - 15)") sqlQuery += " AND price BETWEEN 10.00 AND 15";
-    else if (userFilter.price == "Expensive taste (> 15)") sqlQuery += " AND price >= 15 ";
-
-    if (userFilter.mood != '') sqlQuery += " AND mood = '" + userFilter.mood + "'";
-
-    if (userFilter.genre != '') sqlQuery += " AND genre = '" + userFilter.genre + "'";
-
-    if (userFilter.length == "< 30 minutes") sqlQuery += " AND length <= 30";
-    else if (userFilter.length == "30 - 90 minutes") sqlQuery += " AND length BETWEEN 30 AND 90";
-    else if (userFilter.length == "> 90 minutes") sqlQuery += " AND length >= 90";
-
+    var sqlQuery = createQuery.createQuerySearch(userFilter)
     console.log(sqlQuery)
 
     // Return query result
@@ -68,7 +50,7 @@ app.get('/searchResult', function (request, response) {
         if (err) {
             console.log("Error: " + err)
         } else {
-            response.send(rows);
+            response.send([rows, userFilter]);
         }
     })
 });
@@ -76,11 +58,24 @@ app.get('/searchResult', function (request, response) {
 //////////////////////////// Search movies from by indirect search ////////////////////////////
 var characteristic;
 
-app.post('/pageLinking', function (request, response) {
-    console.log("POST request received at /search");
-    console.log(request.body)
-    userFilter = request.body;
-    response.redirect('/searchresult.html');
+app.get('/pageLink/:id', function (request, response) {
+    characteristic = request.params.id
+    console.log(characteristic)
+    response.redirect('/pagelinkresult.html');
+});
+
+app.get('/pageLinkResult', function (request, response) {
+    var sqlQuery = createQuery.createQueryLink(characteristic)
+    console.log(sqlQuery)
+
+     // Return query result
+     db.all(sqlQuery, function (err, rows) {
+        if (err) {
+            console.log("Error: " + err)
+        } else {
+            response.send([rows, characteristic]);
+        }
+    })
 });
 
 

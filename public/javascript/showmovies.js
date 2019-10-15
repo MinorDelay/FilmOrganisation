@@ -26,13 +26,13 @@ function createTable(table, data, attributes) {
         if (movie.title != nextMovie.title) {
             mergedMovie = {
                 "title": data[i].title,
-                "genre": data[i].genre,
+                "genre": [data[i].genre],
                 "summary": data[i].summary,
                 "length": data[i].length,
                 "price": data[i].price,
                 "imdbRating": data[i].imdbRating,
-                "actor": data[i].actor,
-                "director": data[i].director,
+                "actor": [data[i].actor],
+                "director": [data[i].director],
                 "mood": data[i].mood
             }
         }
@@ -48,21 +48,34 @@ function createTable(table, data, attributes) {
 
         // Merge genre, actors and directors into one string
         if (movie.title == nextMovie.title) {
-            if (mergedMovie.genre.indexOf(nextMovie.genre) < 0) mergedMovie.genre += " | " + nextMovie.genre
-            if (mergedMovie.actor.indexOf(nextMovie.actor) < 0) mergedMovie.actor += " | " + nextMovie.actor
-            if (mergedMovie.director.indexOf(nextMovie.director) < 0) mergedMovie.director += " | " + nextMovie.director
+            if (mergedMovie.genre.includes(nextMovie.genre) == false) mergedMovie.genre.push(nextMovie.genre)
+            if (mergedMovie.actor.includes(nextMovie.actor) == false) mergedMovie.actor.push(nextMovie.actor)
+            if (mergedMovie.director.includes(nextMovie.director) == false) mergedMovie.director.push(nextMovie.director)
         }
 
         // Create row if the next movie is another movie
         if (movie.title != nextMovie.title) {
             for (var j = 0; j < Object.keys(mergedMovie).length; j++) {
                 var cell = document.createElement('td');
-                var text = mergedMovie[attributes[j]].toString();
+                var text = "";
 
-                // Create url's
-                if (["genre", "length", "price", "imdbRating", "actor", "director", "mood"].indexOf(attributes[j]) > -1)
-                    text = text.link("/pageLinking")
-                cell.innerHTML = text;
+                // If it is one of these properties, then create url
+                if (["genre", "length", "price", "imdbRating", "actor", "director", "mood"].indexOf(attributes[j]) > -1) {
+                    if (Array.isArray(mergedMovie[attributes[j]])) {
+                        mergedMovie[attributes[j]].forEach(function (element) {
+                            text = element
+                            text = text.link("/pageLink/" + attributes[j] + "=" + element)
+                            cell.innerHTML += text + " | ";
+                        });
+                    } else {
+                        text = mergedMovie[attributes[j]].toString();
+                        text = text.link("/pageLink/" + attributes[j] + "=" + mergedMovie[attributes[j]])
+                        cell.innerHTML = text
+                    }
+                   // Don't create url for title and summary
+                } else {
+                    cell.innerHTML = mergedMovie[attributes[j]].toString();
+                }
                 row.appendChild(cell);
             }
         }
