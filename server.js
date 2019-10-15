@@ -43,7 +43,7 @@ app.get('/searchResult', function (request, response) {
 
     if (userFilter.title != '') sqlQuery += " AND title LIKE '%" + userFilter.title + "%'";
 
-    if (userFilter.imdbRating == "< 5") sqlQuery += " AND imdbRating <= 5";
+    if (userFilter.imdbRating == "< 5") sqlQuery += " AND imdbRating <= " + 5;
     else if (userFilter.imdbRating == "5 - 7") sqlQuery += " AND imdbRating >= 5 AND imdbRating <= 7";
     else if (userFilter.imdbRating == "> 7.5") sqlQuery += " AND imdbRating >= 7.5";
 
@@ -60,8 +60,10 @@ app.get('/searchResult', function (request, response) {
     else if (userFilter.length == "90 - 120 minutes") sqlQuery += " AND price >= 90 AND price <= 120";
     else if (userFilter.length == "> 120 minutes") sqlQuery += " AND price >= 120";
 
+    console.log(sqlQuery)
+    
     // Return query result
-    db.all(sqlQuery.toString(), function (err, rows) {
+    db.all(sqlQuery, function (err, rows) {
         if (err) {
             console.log("Error: " + err)
         } else {
