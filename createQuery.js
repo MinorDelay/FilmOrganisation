@@ -2,8 +2,13 @@ module.exports = {
     createQuerySearch: function (userFilter) {
         var query = "SELECT * FROM movies WHERE 1=1"
 
-        if (userFilter.title != '') query += " AND title LIKE '%" + userFilter.title + "%'";
-
+        if (userFilter.keywords != '') {
+            var words = userFilter.keywords.toString().split(" ");
+            console.log(words)
+            for (i = 0; i < words.length; i++) {
+                query += " AND title LIKE '%" + words[i] + "%' OR actor LIKE '%" +words[i] + "%' OR director LIKE '%" + words[i] + "%'";
+            }
+        }
         if (userFilter.imdbRating == "< 5") query += " AND imdbRating <= 5";
         else if (userFilter.imdbRating == "5 - 7.5") query += " AND imdbRating BETWEEN 5 AND 7";
         else if (userFilter.imdbRating == "> 7.5") query += " AND imdbRating >= 7.5";
