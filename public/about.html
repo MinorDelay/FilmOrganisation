@@ -2,40 +2,55 @@
 <html lang="en">
 
 <head>
-    <title>About thecompletescreening.com</title>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!-- jQuery -->
-    <link href="css/about.css" rel="stylesheet" />
+  <title>About thecompletescreening.com</title>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!-- jQuery -->
+  <link href="css/about.css" rel="stylesheet" />
 </head>
 
 <body>
   <ul>
-    <li><a href="index.html">Home</a></li>
-    <li><a class="active" href="about.html">About</a></li>
+    <li><a href="index.html" class="active" href="#home">Home</a></li>
+    <li><a href="allmovies.html">All movies</a></li>
+    <li><a href="about.html">About</a></li>
   </ul>
 
   <h2 class="title">About</h2>
-  <p>The majority of people watches movies. However, determining which movie to watch is can be very difficult as there is an enormous catalogue of movies at our
-  disposal. Luckily, there are websites such as <a href="imdb.com/">imdb.com</a> who make the choice of determining which movie to watch a lot easier. These
-  sites provide a comprehensive overview of all information you might be interested in, e.g. title, rating, and actors starring in a movie. This way users can
-  filter the movies they feel like watching based on one or multiple aforementioned preferences.
-  <br>
-  Even though the amount of information on IMDB is comprehensive, data about the prices of movies isn't present. This is where the project turned to
-  <a href="bol.com">bol.com</a> as this website is one of the largest online web stores of the Netherlands. We matched properties from movies in 2018
-  from IMDB with properties from movies in 2018 available on bol.com to further complete the overview of properties available about movies.
-  <br>
-  Furthermore, we assessed that this database was lacking the ability to provide movie recommendations based on the mood the user is in. Mood is a large
-  contributing factor when deciding which movie to watch. A comedy might eleviate a more negative mood, whereas a happy mood can handle a more negative or serious
-  themed movie or documentary.</p>
+  <p>The majority of people watches movies. However, determining which movie to watch is can be very difficult as there
+    is an enormous catalogue of movies at our
+    disposal. Luckily, there are websites such as <a href="imdb.com/">imdb.com</a> who make the choice of determining
+    which movie to watch a lot easier. These
+    sites provide a comprehensive overview of all information you might be interested in, e.g. title, rating, and actors
+    starring in a movie. This way users can
+    filter the movies they feel like watching based on one or multiple aforementioned preferences.
+    <br>
+    Even though the amount of information on IMDB is comprehensive, data about the prices of movies isn't present. This
+    is where the project turned to
+    <a href="bol.com">bol.com</a> as this website is one of the largest online web stores of the Netherlands. We matched
+    properties from movies in 2018
+    from IMDB with properties from movies in 2018 available on bol.com to further complete the overview of properties
+    available about movies.
+    <br>
+    Furthermore, we assessed that this database was lacking the ability to provide movie recommendations based on the
+    mood the user is in. Mood is a large
+    contributing factor when deciding which movie to watch. A comedy might eleviate a more negative mood, whereas a
+    happy mood can handle a more negative or serious
+    themed movie or documentary.</p>
 
   <h2 class="ontology">Ontology</h2>
-  <p>After extraction of data from both <a href="imdb.com">imdb.com</a> and <a href="bol.com">bol.com</a> through webscraping we set out to formalize
-    the way this data is linked to each other. What is convenient of good websites is the ability to select a certain property you're interested in and be able
-    to get referenced further to the data that is linked to it. For instance, Chadwick Boseman an actor starring in Black Panther. He references to his co-actor
-    Michael B. Jordan who then can be referenced to the movie Fahrenheit 451 as Michael B. Jordan stars in this movie too. This is one of the many instances
-    it can be efficient to have data linked to each other. How all data relates to each other is formalized in an ontology. Understanding the ontology canvas
+  <p>After extraction of data from both <a href="imdb.com">imdb.com</a> and <a href="bol.com">bol.com</a> through
+    webscraping we set out to formalize
+    the way this data is linked to each other. What is convenient of good websites is the ability to select a certain
+    property you're interested in and be able
+    to get referenced further to the data that is linked to it. For instance, Chadwick Boseman an actor starring in
+    Black Panther. He references to his co-actor
+    Michael B. Jordan who then can be referenced to the movie Fahrenheit 451 as Michael B. Jordan stars in this movie
+    too. This is one of the many instances
+    it can be efficient to have data linked to each other. How all data relates to each other is formalized in an
+    ontology. Understanding the ontology canvas
     help improve the usability of a website.
     <br>
-    To know how the data of thecompletescreening.com is structure we have provided the image below. In addition the OWL and Turtle files of the ontology can be found
+    To know how the data of thecompletescreening.com is structure we have provided the image below. In addition the OWL
+    and Turtle files of the ontology can be found
     <a href="./data/OntologyOWL.xml">here</a> and <a href="./data/turtle.owl">here</a> respectively.
 
 
