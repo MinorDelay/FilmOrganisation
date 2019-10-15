@@ -14,26 +14,25 @@ function createTableHead(table, titles) {
 function createTable(table, data, attributes) {
     var movie = data[0]
     var nextMovie = {
-        "title": "????????"
+        "Title": "????????"
     }
     var mergedMovie = {};
-
     // Each entry in database
+    console.log(data)
     for (var i = 0; i < Object.keys(data).length; i++) {
         var row = table.insertRow();
-
         // Movie with merged data from all movies with the same title
-        if (movie.title != nextMovie.title) {
+        if (movie.Title != nextMovie.Title) {
             mergedMovie = {
-                "title": data[i].title,
-                "genre": [data[i].genre],
-                "summary": data[i].summary,
-                "length": data[i].length,
-                "price": data[i].price,
-                "imdbRating": data[i].imdbRating,
-                "actor": [data[i].actor],
-                "director": [data[i].director],
-                "mood": data[i].mood
+                "Title": data[i].Title,
+                "Genre": [data[i].Genre],
+                "Summary": data[i].Summary,
+                "Length": data[i].Length,
+                "Price": data[i].Price,
+                "ImdbRating": data[i].ImdbRating,
+                "Actor": [data[i].Actor],
+                "Director": [data[i].Director],
+                "Mood": data[i].Mood
             }
         }
 
@@ -42,25 +41,25 @@ function createTable(table, data, attributes) {
 
         // Next movie if there is a next movie in the list
         if (i + 1 < Object.keys(data).length) nextMovie = data[i + 1]
-        else nextMovie = {
-            "title": "????????"
-        }
+        else nextMovie.Title = "????????"
+
+        console.log("TITLE: "+ nextMovie.Title)
 
         // Merge genre, actors and directors into one string
-        if (movie.title == nextMovie.title) {
-            if (mergedMovie.genre.includes(nextMovie.genre) == false) mergedMovie.genre.push(nextMovie.genre)
-            if (mergedMovie.actor.includes(nextMovie.actor) == false) mergedMovie.actor.push(nextMovie.actor)
-            if (mergedMovie.director.includes(nextMovie.director) == false) mergedMovie.director.push(nextMovie.director)
+        if (movie.Title == nextMovie.Title) {
+            if (mergedMovie.Genre.includes(nextMovie.Genre) == false) mergedMovie.Genre.push(nextMovie.Genre)
+            if (mergedMovie.Actor.includes(nextMovie.Actor) == false) mergedMovie.Actor.push(nextMovie.Actor)
+            if (mergedMovie.Director.includes(nextMovie.Director) == false) mergedMovie.Director.push(nextMovie.Director)
         }
 
         // Create row if the next movie is another movie
-        if (movie.title != nextMovie.title) {
+        if (movie.Title != nextMovie.Title) {
             for (var j = 0; j < Object.keys(mergedMovie).length; j++) {
                 var cell = document.createElement('td');
                 var text = "";
 
                 // If it is one of these properties, then create url
-                if (["genre", "length", "price", "imdbRating", "actor", "director", "mood"].indexOf(attributes[j]) > -1) {
+                if (["Genre", "Length", "Price", "ImdbRating", "Actor", "Director", "Mood"].indexOf(attributes[j]) > -1) {
                     if (Array.isArray(mergedMovie[attributes[j]])) {
                         mergedMovie[attributes[j]].forEach(function (element) {
                             text = element
@@ -85,7 +84,7 @@ function createTable(table, data, attributes) {
 function showMovies(movies, tableId) {
     var table = document.getElementById(tableId);
     var tableHeadTitles = ["Title", "Genre", "Summary", "Length", "Price", "Rating", "Actor", "Director", "Mood"]
-    var movieAttributes = ["title", "genre", "summary", "length", "price", "imdbRating", "actor", "director", "mood"]
+    var movieAttributes = ["Title", "Genre", "Summary", "Length", "Price", "ImdbRating", "Actor", "Director", "Mood"]
     createTable(table, movies, movieAttributes);
     createTableHead(table, tableHeadTitles);
 }
