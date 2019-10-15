@@ -18,7 +18,6 @@ function createTable(table, data, attributes) {
     }
     var mergedMovie = {};
     // Each entry in database
-    console.log(data)
     for (var i = 0; i < Object.keys(data).length; i++) {
         var row = table.insertRow();
         // Movie with merged data from all movies with the same title
@@ -54,7 +53,6 @@ function createTable(table, data, attributes) {
 
         // Create row if the next movie is another movie
         if (movie.Title != nextMovie.Title) {
-            console.log("TEST 1")
             for (var j = 0; j < Object.keys(mergedMovie).length; j++) {
                 var cell = document.createElement('td');
                 var text = "";
