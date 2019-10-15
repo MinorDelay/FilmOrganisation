@@ -24,6 +24,7 @@ app.get('/allmovies', function (request, response) {
     })
 });
 
+//////////////////////////// Search movies from home page ////////////////////////////
 var userFilter;
 
 // Process filter chosen by user
@@ -47,7 +48,7 @@ app.get('/searchResult', function (request, response) {
     else if (userFilter.imdbRating == "5 - 7.5") sqlQuery += " AND imdbRating BETWEEN 5 AND 7";
     else if (userFilter.imdbRating == "> 7.5") sqlQuery += " AND imdbRating >= 7.5";
 
-    if (userFilter.price == "Cheap watch (< 5)") sqlQuery += " AND price < 5";
+    if (userFilter.price == "Cheap watch (< 5)") sqlQuery += " AND price <= 5";
     else if (userFilter.price == "Budget (5 - 10)") sqlQuery += " AND price BETWEEN 5 AND 10";
     else if (userFilter.price == "Medium (10 - 15)") sqlQuery += " AND price BETWEEN 10.00 AND 15";
     else if (userFilter.price == "Expensive taste (> 15)") sqlQuery += " AND price >= 15 ";
@@ -68,11 +69,22 @@ app.get('/searchResult', function (request, response) {
             console.log("Error: " + err)
         } else {
             response.send(rows);
-            console.log(rows)
         }
     })
 });
 
+//////////////////////////// Search movies from by indirect search ////////////////////////////
+var characteristic;
+
+app.post('/pageLinking', function (request, response) {
+    console.log("POST request received at /search");
+    console.log(request.body)
+    userFilter = request.body;
+    response.redirect('/searchresult.html');
+});
+
+
+//////////////////////////// General functionality ////////////////////////////
 app.listen(3000, function () {
     console.log("Server is running on port 3000");
 });
