@@ -76,12 +76,13 @@ p{
 
 .ontologyImage{
   position:relative;
-  bottom: 0;
   margin-top: -40px;
   left:275px;
   width: 1000px;
   height: 540px;
   padding-top: 25px;
+  bottom: 0;
+  margin-bottom: -20px;
   background: #d9eff5;
 
 }
@@ -90,4 +91,58 @@ img{
   left: 200px;
   max-width: 60%;
   height:auto;
+}
+
+.footer {
+  position: relative;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #333;
+  color: white;
+  text-align: 0px;
+}
+
+.footerQL{
+  position: relative;
+  left: 10px;
+  bottom: -10px;
+}
+
+.vertLine1{
+  border-right: 2px solid white;
+  position: absolute;
+  bottom: 18px;
+  left: 20%;
+  height: 55px;
+}
+.cr1{
+  position: absolute;
+  left: 23%;
+  bottom: 50px;
+}
+
+.cr2{
+  position: absolute;
+  left: 23%;
+  bottom: 20px;
+}
+
+.vertLine2{
+  border-right: 2px solid white;
+  position: absolute;
+  bottom: 18px;
+  left: 40%;
+  height: 55px;
+}
+.cr3{
+  position: absolute;
+  left: 43%;
+  bottom: 50px;
+}
+
+.cr4{
+  position: absolute;
+  left: 43%;
+  bottom: 20px;
 }
