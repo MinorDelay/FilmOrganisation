@@ -40,7 +40,9 @@ html {
  * Remove the margin in all browsers (opinionated).
  */
 body {
-  margin: 0;
+   background-image: url(/background.png);
+   background-size: cover;
+   margin: 0;
 }
 
 /**
@@ -845,8 +847,9 @@ legend {
       justify-content: center;
   -ms-flex-align: center;
       align-items: center;
-  background: #d9eff5;
-  padding: 15px;
+  /* background: #d9eff5; */
+  padding-left: 200px;
+  padding-right: 200px;
   font-family: 'Lato', sans-serif;
 }
 

@@ -1,27 +1,17 @@
 body{
   margin:0;
-  background: #d9eff5;
-
-}
-
-.title{
-  padding-top: 50px;
-  padding-left: 250px;
-}
-
-h2{
-  padding-left: 250px;
-}
-
-p{
-  padding-left: 250px;
-  padding-right: 250px;
+  background-image: url(/background1.png);
+  background-size: cover;
+  /* background-repeat: no-repeat; */
+  /* height: 100%; */
+  /* background-origin: contentbox; */
 }
 
 ul{
   list-style-type: none;
   margin: 0;
   padding: 0;
+  width: 100%;
   overflow: hidden;
   background-color: #333;
 }
@@ -40,4 +30,64 @@ li a {
 
 li a:hover {
   background-color: #111;
+}
+
+
+.About{
+  position:relative;
+  left:275px;
+  width: 1000px;
+  background: #d9eff5;
+}
+
+.titleAbout{
+  margin-top: 0;
+  padding-top: 15px;
+  position: relative;
+  left: 200px;
+}
+
+p{
+  position: relative;
+  left: 200px;
+  width: 600px;
+  bottom: 20px;
+}
+
+.Ontology{
+  position:relative;
+  top: -20px;
+  left:275px;
+  width: 1000px;
+  background: #d9eff5;
+}
+
+.titleOntology{
+  margin-top: 0;
+  position: relative;
+  left: 200px;
+}
+
+p{
+  position: relative;
+  left: 200px;
+  width: 600px;
+}
+
+.ontologyImage{
+  position:relative;
+  bottom: 0;
+  margin-top: -40px;
+  left:275px;
+  width: 1000px;
+  height: 540px;
+  padding-top: 25px;
+  background: #d9eff5;
+
+}
+img{
+  position: relative;
+  left: 200px;
+  max-width: 60%;
+  height:auto;
 }
