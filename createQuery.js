@@ -6,7 +6,7 @@ module.exports = {
             query += " AND ("
             var words = userFilter.keywords.toString().split(" ");
             for (i = 0; i < words.length; i++) {
-                query += "Title LIKE '%" + words[i] + "%' OR Summary LIKE '%" + words[i] + "%' OR Actor LIKE '%" + words[i] + "%' OR Director LIKE '%" + words[i] + "%' OR ";
+                query += "Title LIKE '%" + words[i] + "%'" + " OR Actor LIKE '%" + words[i] + "%' OR Director LIKE '%" + words[i] + "%' OR ";
             }
             query = query.slice(0, -4);
             query += ")"
